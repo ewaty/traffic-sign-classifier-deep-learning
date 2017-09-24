@@ -1,5 +1,5 @@
 
-# **Traffic Sign Recognition** 
+# **Traffic Sign Recognition**
 
 **Build a Traffic Sign Recognition Project**
 
@@ -24,12 +24,6 @@ The goals / steps of this project are the following:
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-### Writeup / README
-
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
-
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
-
 ### Data Set Summary & Exploration
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
@@ -56,18 +50,18 @@ The following are samples of images from the training data. Photos of traffic si
 
 ### Design and Test a Model Architecture
 
-#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. 
+#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.
 
-For preprocessing I decided to only normalize the pictures. I divided each pixel value by 255 and subtracted 0.5 from it to achieve data with, roughly, zero mean and standard deviation of 0.5. It was suggested that students convert images to grayscale. However, I have achieved higher validation accuracy with a model accepting color images. This seems intuitive, as color is an important feature of a traffic sign. 
+For preprocessing I decided to only normalize the pictures. I divided each pixel value by 255 and subtracted 0.5 from it to achieve data with, roughly, zero mean and standard deviation of 0.5. It was suggested that students convert images to grayscale. However, I have achieved higher validation accuracy with a model accepting color images. This seems intuitive, as color is an important feature of a traffic sign.
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
 
-| Layer         		|     Description	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
+| Layer         		|     Description	        					|
+|:---------------------:|:---------------------------------------------:|
+| Input         		| 32x32x3 RGB image   							|
 | Convolution 5x5   	| 1x1 stride, valid padding, outputs 28x28x10 	|
 | Softsign				|												|
 | Max pooling	      	| 2x2 stride,  outputs 16x16x20 				|
@@ -79,7 +73,7 @@ My final model consisted of the following layers:
 | Fully connected		| Outputs vector size 86						|
 | Softsign				|												|
 | Fully connected		| Outputs vector size 43						|
- 
+
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
@@ -105,12 +99,12 @@ I have experimented with using dropout functions with probablility of keeping at
 
 I have also tried removing max pooling and connecting it's neighboring layers. This decreased the validation accuracy.
 
-As a final adjustment I tried elongating the layers. First convolutional layer was elongated from depth 6 to depth 10. Second convolutional layer from 16 to 20. Second fully connected layer from 84 to 86. The validation accuracy reach 0.960 where it stands now. 
+As a final adjustment I tried elongating the layers. First convolutional layer was elongated from depth 6 to depth 10. Second convolutional layer from 16 to 20. Second fully connected layer from 84 to 86. The validation accuracy reach 0.960 where it stands now.
 
 Elongating convolutional layers might increase the ability of the network to detect more variable features. Beacause traffic signs have more diversity of features than handwritten letters, longer layers might be more capable of detecting the variety of features.
 
 The model has a final training accuracy of 1.000, validation accuracy of 0.960 and testing accuracy of 0.941. Although the network is overfitting to a small degree, it is still a good model to classify traffic signs.
- 
+
 
 ### Test a Model on New Images
 
@@ -118,7 +112,7 @@ The model has a final training accuracy of 1.000, validation accuracy of 0.960 a
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image5] 
+![alt text][image5]
 
 The first image ("Turn right at intersecion") might be difficult to classify because of it's similarity to other signs, such as turn left at intersection. On the other hand, it's distinct blue color might help diffrentiate it from other circular signs. The blue background might, in some conditions, obscure the sign.
 
@@ -134,10 +128,10 @@ The fifth image ("Right of way at intersection") can be confused with other sign
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
+| Image			        |     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
 | Turn right            | Turn right                                    |
-| No overtaking         | No overtaking  								| 
+| No overtaking         | No overtaking  								|
 | Wrong way     		| Wrong way 									|
 | Yield					| Yield											|
 | Right of way	   		| Right of way					 				|
@@ -154,51 +148,50 @@ For all images, the certainty of classification is close to 1. For the first sig
 
 First image
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
 | 0.9987                | Turn right ahead                              |
-| 5.054e-04             | Ahead only		                			| 
+| 5.054e-04             | Ahead only		                			|
 | 3.400e-04          	| Go straight or left 							|
 | 3.138e-04  			| Turn left ahead	    						|
 | 5.304e-05    	   		| Roundabout					 				|
 
 Second image
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
 | 0.9968                | No passing                                    |
-| 2.700e-03             | End of no passing		               			| 
+| 2.700e-03             | End of no passing		               			|
 | 2.401e-04          	| Go straight or left 							|
 | 1.100e-04  			| Dangerous curve to the left					|
 | 8.620e-05    	   		| Dangerous curve to the right	 				|
 
 Third image
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
 | 0.9999                | No entry                                      |
-| 6.949e-05             | Speed limit 20 km/h		          			| 
+| 6.949e-05             | Speed limit 20 km/h		          			|
 | 1.489e-05          	| Stop              							|
 | 8.941e-06  			| Double curve              					|
 | 7.679e-06   	   		| Priority road                 				|
 
 Fourth image
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
 | 0.9999                | Yield                                         |
-| 4.847e-06             | No passing        		          			| 
+| 4.847e-06             | No passing        		          			|
 | 1.459e-06          	| Speed limit 60 km/h  							|
 | 2.318e-07  			| Speed limit 50 km/h          					|
 | 1.123e-07   	   		| No vehicles                     				|
 
 Fifth image
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
 | 0.9999                | Right of way                                  |
-| 3.781e-05             | Beware of ice and snow	          			| 
+| 3.781e-05             | Beware of ice and snow	          			|
 | 1.652e-05          	| Pedastrians       							|
 | 6.087e-06  			| Double curve               					|
 | 2.153e-06   	   		| Speed limit 100 km/h                    		|
-
